@@ -1,6 +1,6 @@
 spring:
   application:
-    name: hero
+    name: hero-feign
 
   datasource :
       url : jdbc:mysql://192.168.71.35:3306/test
