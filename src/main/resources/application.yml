@@ -18,7 +18,7 @@ spring:
   redis.pool.timeout : 10000
 
 
-logging.level.com.dragon.dao.mapper : DEBUG
+logging.level.com.hero.feign.IUserFeignClient: DEBUG
 mybatis.mapper-locations : classpath:mappers/*.xml
 server.port : 8083
 
@@ -32,3 +32,13 @@ eureka:
     prefer-ip-address : true
     instance-id: ${spring.application.name}
 
+
+#hystrix.command.default.execution.isolation.thread.timeoutInMillseconds: 5000
+
+
+#微服务间调用其实走的是http请求，debug了一下默认的ReadTimeout时间为5s，ConnectTimeout时间为2s，
+#Fegin进行微服务间调用，底层用的还是Ribbon。
+ribbon.ReadTimeout: 60000
+ribbon.ConnectTimeout: 60000
+ribbon.MaxAutoRetries: 0
+ribbon.MaxAutoRetriesNextServer: 1
