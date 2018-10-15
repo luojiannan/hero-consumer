@@ -20,7 +20,7 @@ public class HeroApplicationTests {
 
 	@Test
 	public void sendAndReceive_2(){
-		sendMsg.sendMsg("童立东");
+		sendMsg.sendMsg("瞎卡拉卡");
 	}
 
 
