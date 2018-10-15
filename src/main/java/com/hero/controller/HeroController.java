@@ -34,5 +34,10 @@ public class HeroController {
         return userFeignClient.add(user);
     }
 
+    @GetMapping("getAll")
+    public BaseResponse getAll(int page, int size){
+        return userFeignClient.getAll(page,size);
+    }
+
 
 }

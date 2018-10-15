@@ -1,6 +1,14 @@
 spring:
+# 配置rabbitMQspring:
+  rabbitmq:
+    host: 192.168.71.36
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: spring-boot-vhost
   application:
     name: hero-feign
+
 
   datasource :
       url : jdbc:mysql://192.168.71.35:3306/test
@@ -31,6 +39,7 @@ eureka:
   instance:
     prefer-ip-address : true
     instance-id: ${spring.application.name}
+#    appname:
 
 
 #hystrix.command.default.execution.isolation.thread.timeoutInMillseconds: 5000

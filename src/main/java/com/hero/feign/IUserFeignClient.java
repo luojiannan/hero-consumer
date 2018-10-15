@@ -31,4 +31,7 @@ public interface IUserFeignClient {
      */
     @RequestMapping(value = "user/add" , method = RequestMethod.POST)
     BaseResponse add(@RequestBody UserEO user);
+
+    @RequestMapping(value="user/getUserList",method = RequestMethod.GET)
+    BaseResponse getAll(@RequestParam("page") int page,@RequestParam("size") int size);
 }
