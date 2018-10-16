@@ -4,6 +4,7 @@ package com.hero.controller;
 import com.hero.common.BaseResponse;
 import com.hero.entity.UserEO;
 import com.hero.feign.IUserFeignClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("hero")
+//@SessionScope
 public class HeroController {
 
     @Autowired
@@ -34,10 +36,26 @@ public class HeroController {
         return userFeignClient.add(user);
     }
 
+    /**
+     * 原生断路器配置
+     * 如果好几次请求都是断路，那么后续请求会直接走断路
+     * @param page
+     * @param size
+     * @return
+     */
     @GetMapping("getAll")
-    public BaseResponse getAll(int page, int size){
+    @HystrixCommand(fallbackMethod = "getAllFallBack")
+    public BaseResponse getAll(Integer page, Integer size){
         return userFeignClient.getAll(page,size);
     }
+
+    public BaseResponse getAllFallBack(Integer page, Integer size){
+        BaseResponse<Object> response = new BaseResponse<>();
+        response.setResult("断路");
+        return response;
+    }
+
+
 
 
 }

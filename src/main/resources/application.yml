@@ -44,6 +44,8 @@ eureka:
 
 #hystrix.command.default.execution.isolation.thread.timeoutInMillseconds: 5000
 
+# 值为false时，禁用feign对hystrix 的支持
+feign.hystrix.enabled: true
 
 #微服务间调用其实走的是http请求，debug了一下默认的ReadTimeout时间为5s，ConnectTimeout时间为2s，
 #Fegin进行微服务间调用，底层用的还是Ribbon。
